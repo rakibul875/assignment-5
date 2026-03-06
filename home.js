@@ -53,6 +53,15 @@ function openData(){
     })
     console.log(openData.length)
 }
+function closedData(){
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+    .then(res=>res.json())
+    .then(data=>{
+        const closedData=data.data.filter(close=>close.status==="closed")
+        displayData(closedData)
+    })
+    console.log(closedData.length)
+}
 
 
 
