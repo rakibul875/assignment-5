@@ -8,6 +8,10 @@
     <!-- tailwind+daisyUI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font owesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
 
@@ -21,7 +25,7 @@
                 </div>
             </div>
             <div class="flex gap-2">
-                <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                <input type="text" placeholder="Search issues..." class="input input-bordered w-24 md:w-auto" />
 
                 <button class="btn btn-primary">+New Issue</button>
             </div>
@@ -29,12 +33,39 @@
     </header>
 
     <main class="w-11/12 mx-auto">
-        <div class="card card-body shadow-sm mt-10">
-        <button class="btn "></button>
-        <button class="btn "></button>
-        <button class="btn "></button>
+        <div class="shadow-sm mt-10 flex p-5 gap-5">
+            <button onclick="loadData()" class="btn btn-primary btn-soft">All</button>
+            <button onclick="openData()" class="btn btn-primary btn-soft">Open</button>
+            <button onclick="closedData()" class="btn btn-primary btn-soft">Closed</button>
         </div>
+
+        <section>
+            <div id="all-issues-container" class="shadow-sm grid md:grid-cols-4 grid-cols-1 mt-10 p-5 gap-6">
+
+                <!-- <div class="space-y-3 card card-body shadow-sm border-t-6 border-t-blue-500">
+                    <h1 class="text-xl font-semibold">Fix navigation menu on mobile devices</h1>
+                    <p class="text-gray-600">The navigation menu doesn't collapse properly on mobile devices...</p>
+                    <div class="flex gap-4">
+                        <div
+                            class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-lg">
+                            <i class="fa-brands fa-empire"></i>
+                            <span>documentation</span>
+                        </div>
+                        <div
+                            class="flex items-center p-1 bg-[#FFF8DB] text-[#D97706] rounded-lg">
+                            <i class="fa-brands fa-empire"></i>
+                            <span>documentation</span>
+                        </div>
+                    </div>
+                    <p>#1
+                        by john_doe</p>
+                    <p>1/15/2024</p>
+                </div> -->
+
+            </div>
+        </section>
     </main>
+    <script src="./home.js"></script>
 </body>
 
 </html>
