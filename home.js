@@ -32,12 +32,12 @@ function displayData(allData) {
 
 
     `
-    // const border = document.querySelector(".outline")
-        //  if (data.status === "open") {
-        //     border.style.borderTop="4px solid green"
-        // }else{
-        //     border.style.borderTop="4px solid purple"
-        // }
+    const border = card.querySelector(".outline")
+         if (data.status === "open") {
+            border.style.borderTop="4px solid green"
+        }else{
+            border.style.borderTop="4px solid purple"
+        }
         allDataContainer.append(card)
     });
 
