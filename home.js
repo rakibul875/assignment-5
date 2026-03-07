@@ -3,6 +3,7 @@ const loadingSpnnir = document.getElementById("loading-spinner")
 const buttonContainer = document.getElementById("all-button")
 const allButton = buttonContainer.querySelectorAll("button")
 const issuesLength = document.getElementById("issues-length")
+const modalContainer=document.getElementById("modal-containt")
 async function loadData() {
     showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -11,6 +12,56 @@ async function loadData() {
     hidLoading()
 }
 
+
+const showDetail =async (id)=> {
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+    const res=await fetch(url)
+    const detail=await res.json()
+    shoDisplay(detail.data)
+}
+
+const shoDisplay=(dataD)=>{
+   modalContainer.innerHTML=`
+    <h3 class="text-lg font-bold">${dataD.title}</h3>
+            <div class="flex justify-between items-center">
+                <div class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-full w-[80px] justify-center">
+                    <p class="text-[13px] font-semibold text-center">${dataD.status}</p>
+                </div>
+                <p>Opened by Fahim Ahmed</p>
+                <p>${dataD.updatedAt}</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-lg">
+                    <i class="fa-brands fa-empire"></i>
+                    <span>${dataD.labels[0]}</span>
+                </div>
+                <div class="flex items-center p-1 bg-[#FFF8DB] text-[#D97706] rounded-lg">
+                    <i class="fa-brands fa-empire"></i>
+                    <span>${dataD.labels[1] ? dataD.labels[1] : "Not Found"}</span>
+                </div>
+            </div>
+            <p class="text-[#64748B]">${dataD.description}</p>
+            <div class="card shadow-sm bg-gray-300">
+                <div class="flex justify-between items-center w-[90%] mx-auto p-5">
+                    <div class="">
+                        <p>Assignee:</p>
+                        <h2 class="font-bold text-[16px]">${dataD.assignee ?dataD.assignee:"Not Found" }</h2>
+                    </div>
+                    <div class="space-y-2">
+                        <p>Priority:</p>
+                        <div
+                            class="flex items-center p-1 bg-red-400 text-white rounded-full w-[80px] justify-center">
+                            <p class="text-[13px] font-semibold text-center">${dataD.priority}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   
+   `
+
+
+   document.getElementById("my_modal").showModal()
+}
 // function activButton(btn){
 //     allButton.forEach(button => {
 //         button.classList.remove("btn-primary")
@@ -33,7 +84,7 @@ function displayData(allData) {
     allData.forEach(data => {
         const card = document.createElement('div')
         card.innerHTML = `
-            <div class="outline h-full space-y-3 card card-body shadow-sm border-t-6 ">
+            <div onclick="showDetail(${data.id})" class="outline h-full space-y-3 card card-body shadow-sm border-t-6 ">
 
                 <div class="flex justify-between items-center">
                     <img src="" alt="">
@@ -56,7 +107,7 @@ function displayData(allData) {
                             <span>${data.labels[1] ? data.labels[1] : "Not Found"}</span>
                         </div>
                 </div>
-                    <p>#1
+                    <p>#${data.id}
                         ${data.author}</p>
                     <p>${data.createdAt}</p>
             </div>
