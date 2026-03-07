@@ -7,8 +7,8 @@ async function loadData() {
     showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     const data = await res.json()
-    hidLoading()
     displayData(data.data)
+    hidLoading()
 }
 
 // function activButton(btn){
@@ -45,7 +45,7 @@ function displayData(allData) {
                         <div
                             class="flex items-center p-1 bg-[#FFF8DB] text-[#D97706] rounded-lg">
                             <i class="fa-brands fa-empire"></i>
-                            <span>${data.labels[1] ? data.labels[1] : ""}</span>
+                            <span>${data.labels[1] ? data.labels[1] : "Not Found"}</span>
                         </div>
                     </div>
                     <p>#1
