@@ -2,6 +2,7 @@ const allDataContainer = document.getElementById("all-issues-container")
 const loadingSpnnir = document.getElementById("loading-spinner")
 const buttonContainer = document.getElementById("all-button")
 const allButton = buttonContainer.querySelectorAll("button")
+const issuesLength=document.getElementById("issues-length")
 async function loadData() {
     showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -53,17 +54,16 @@ function displayData(allData) {
                 </div>
 
 
-    `
-        const border = card.querySelector(".outline")
-        if (data.status === "open") {
-            border.style.borderTop = "4px solid green"
-        } else {
-            border.style.borderTop = "4px solid purple"
-        }
-        allDataContainer.append(card)
-    });
-
-    console.log(allData.length)
+    ` 
+    const border = card.querySelector(".outline")
+    if (data.status === "open") {
+        border.style.borderTop = "4px solid green"
+    } else {
+        border.style.borderTop = "4px solid purple"
+    }
+    allDataContainer.append(card)
+});
+issuesLength.innerText=allData.length
 }
 
 function openData() {
@@ -86,10 +86,7 @@ function closedData() {
             displayData(closedData)
             hidLoading()
         })
-    // console.log(closedData.length)
+    // issuesLength.innerText=closedData.length
 }
-
-
-
 
 loadData()
