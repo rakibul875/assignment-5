@@ -2,7 +2,7 @@ const allDataContainer = document.getElementById("all-issues-container")
 const loadingSpnnir = document.getElementById("loading-spinner")
 const buttonContainer = document.getElementById("all-button")
 const allButton = buttonContainer.querySelectorAll("button")
-const issuesLength=document.getElementById("issues-length")
+const issuesLength = document.getElementById("issues-length")
 async function loadData() {
     showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -33,7 +33,15 @@ function displayData(allData) {
     allData.forEach(data => {
         const card = document.createElement('div')
         card.innerHTML = `
-    <div class="outline h-full space-y-3 card card-body shadow-sm border-t-6 ">
+            <div class="outline h-full space-y-3 card card-body shadow-sm border-t-6 ">
+
+                <div class="flex justify-between items-center">
+                    <img src="" alt="">
+                    <div class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-full w-[80px] justify-center">
+                    <p class="text-[13px] font-semibold text-center">${data.priority}</p>
+                     </div>
+             </div>
+
                     <h1 class="text-xl font-semibold">${data.title}</h1>
                     <p class="text-gray-600">${data.description}</p>
                     <div class="flex gap-4">
@@ -47,23 +55,23 @@ function displayData(allData) {
                             <i class="fa-brands fa-empire"></i>
                             <span>${data.labels[1] ? data.labels[1] : "Not Found"}</span>
                         </div>
-                    </div>
+                </div>
                     <p>#1
                         ${data.author}</p>
                     <p>${data.createdAt}</p>
-                </div>
+            </div>
 
 
-    ` 
-    const border = card.querySelector(".outline")
-    if (data.status === "open") {
-        border.style.borderTop = "4px solid green"
-    } else {
-        border.style.borderTop = "4px solid purple"
-    }
-    allDataContainer.append(card)
-});
-issuesLength.innerText=allData.length
+    `
+        const border = card.querySelector(".outline")
+        if (data.status === "open") {
+            border.style.borderTop = "4px solid green"
+        } else {
+            border.style.borderTop = "4px solid purple"
+        }
+        allDataContainer.append(card)
+    });
+    issuesLength.innerText = allData.length + " Issues"
 }
 
 function openData() {
@@ -78,7 +86,7 @@ function openData() {
     // console.log(openData.length)
 }
 function closedData() {
-    showLoading()   
+    showLoading()
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
         .then(data => {
