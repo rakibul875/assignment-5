@@ -33,10 +33,10 @@
     </header>
 
     <main class="w-11/12 mx-auto">
-        <div class="shadow-sm mt-10 flex p-5 gap-5">
-            <button onclick="loadData()" class="btn btn-primary btn-soft">All</button>
-            <button onclick="openData()" class="btn btn-primary btn-soft">Open</button>
-            <button onclick="closedData()" class="btn btn-primary btn-soft">Closed</button>
+        <div id="all-button" class="shadow-sm mt-10 flex p-5 gap-5">
+            <button onclick="loadData()" class="btn btn-primary">All</button>
+            <button onclick="openData()" class="btn btn-primary">Open</button>
+            <button onclick="closedData()" class="btn btn-primary">Closed</button>
         </div>
 
         <section>
@@ -62,6 +62,9 @@
                     <p>1/15/2024</p>
                 </div> -->
 
+            </div>
+            <div id="loading-spinner" class="flex justify-center items-center my-20 hidden">
+                <span class="loading loading-spinner loading-xl"></span>
             </div>
         </section>
     </main>
