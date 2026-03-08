@@ -92,8 +92,8 @@ function displayData(allData) {
             <div onclick="showDetail(${data.id})" class="outline h-full space-y-3 card card-body shadow-sm border-t-6 ">
 
                 <div class="flex justify-between items-center">
-                    <img src="" alt="">
-                    <div class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-full w-[80px] justify-center">
+                    <img src="./images/Open-Status.png" alt="">
+                    <div class="labels-bg flex items-center p-1 rounded-full w-[80px] justify-center">
                     <p class="text-[13px] font-semibold text-center">${data.priority}</p>
                      </div>
              </div>
@@ -102,7 +102,7 @@ function displayData(allData) {
                     <p class="text-gray-600">${data.description}</p>
                     <div class="flex gap-4">
                         <div
-                            class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-lg">
+                            class="labels-bg flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-lg">
                             <i class="fa-brands fa-empire"></i>
                             <span>${data.labels[0]}</span>
                         </div>
@@ -126,6 +126,18 @@ function displayData(allData) {
             border.style.borderTop = "4px solid purple"
         }
         allDataContainer.append(card)
+
+        const labelsBg=card.querySelector(".labels-bg")
+        if(data.priority==="high"){
+            labelsBg.style.backgroundColor="#FECACA"
+        }
+        else if(data.priority==="medium"){
+            labelsBg.style.backgroundColor="#FFF6D1"
+            labelsBg.style.color="#F59E0B"
+        }else{
+            labelsBg.style.backgroundColor="#EEEFF2"
+            labelsBg.style.color="#9CA3AF"
+        }
     });
     issuesLength.innerText = allData.length + " Issues"
 }
