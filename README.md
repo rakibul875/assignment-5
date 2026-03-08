@@ -12,4 +12,4 @@
 
 4. Arrow Function হল একটি সংক্ষিপ্ত (shorter) syntax function লিখার জন্য। এটা ES6  থেকে এসেছে।
 
-5. Template literal backticks ` দিয়ে লেখা হয়, এর মধ্যে ${} ব্যবহার করে variables বা expressions embed করা যায়।
+5. Template literal backticks `` দিয়ে লেখা হয়, এর মধ্যে ${} ব্যবহার করে variables বা expressions embed করা যায়।
