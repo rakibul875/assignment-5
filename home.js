@@ -92,7 +92,7 @@ function displayData(allData) {
             <div onclick="showDetail(${data.id})" class="outline h-full space-y-3 card card-body shadow-sm border-t-6 ">
 
                 <div class="flex justify-between items-center">
-                    <img src="./images/Open-Status.png" alt="">
+                    <div>${data.status ==='open'?'<img src="./images/open-status.png" alt="">':'<img src="./images/closed.png" alt="">'}</div>
                     <div class="labels-bg flex items-center p-1 rounded-full w-[80px] justify-center">
                     <p class="text-[13px] font-semibold text-center">${data.priority}</p>
                      </div>
