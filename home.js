@@ -29,7 +29,7 @@ const shoDisplay=(dataD)=>{
                     <p class="text-[13px] font-semibold text-center">${dataD.status}</p>
                 </div>
                 <p>Opened by ${dataD.assignee ?dataD.assignee:"Not Found" }</p>
-                <p>${dataD.updatedAt}</p>
+                <p>${formatDate(dataD.updatedAt)}</p>
             </div>
             <div class="flex gap-4">
                 <div class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-lg">
@@ -76,6 +76,18 @@ function activeButton(btn){
     btn.classList.remove("btn-outline")
 }
 
+
+function formatDate(date) {
+  const d = new Date(date);
+  const day = 
+String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+
+  return `${day}-${month}-${year}`;
+}
+
+
 function showLoading() {
     loadingSpnnir.classList.remove("hidden")
     allDataContainer.innerHTML = ""
@@ -114,7 +126,7 @@ function displayData(allData) {
                 </div>
                     <p>#${data.id}
                         ${data.author}</p>
-                    <p>${data.createdAt}</p>
+                    <p>${formatDate(data.createdAt)}</p>
             </div>
 
 
