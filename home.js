@@ -5,6 +5,7 @@ const allButton = buttonContainer.querySelectorAll("button")
 const issuesLength = document.getElementById("issues-length")
 const modalContainer=document.getElementById("modal-containt")
 async function loadData() {
+    // activeButton(event.target)
     showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     const data = await res.json()
@@ -149,3 +150,16 @@ function closedData() {
 }
 
 loadData()
+
+
+document.getElementById("search-btn").addEventListener('click',()=>{
+    const input=document.getElementById("search-input")
+    const searchValue=input.value.trim().toLowerCase()
+   fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+   .then(res=>res.json())
+   .then(data=>{
+    const allData=data.data
+    const filterData= allData.filter(data=>data.title.toLowerCase().includes(searchValue))
+    displayData(filterData)
+   })
+})
