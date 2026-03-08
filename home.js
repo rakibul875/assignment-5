@@ -1,12 +1,12 @@
 const allDataContainer = document.getElementById("all-issues-container")
 const loadingSpnnir = document.getElementById("loading-spinner")
-const buttonContainer = document.getElementById("all-button")
-const allButton = buttonContainer.querySelectorAll("button")
 const issuesLength = document.getElementById("issues-length")
 const modalContainer=document.getElementById("modal-containt")
-async function loadData() {
-    // activeButton(event.target)
+async function loadData(event) {
     showLoading()
+    if(event){
+        activeButton(event.target)
+    }
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     const data = await res.json()
     displayData(data.data)
@@ -28,7 +28,7 @@ const shoDisplay=(dataD)=>{
                 <div class="flex items-center p-1 bg-[#FECACA] text-[#EF4444] rounded-full w-[80px] justify-center">
                     <p class="text-[13px] font-semibold text-center">${dataD.status}</p>
                 </div>
-                <p>Opened by Fahim Ahmed</p>
+                <p>Opened by ${dataD.assignee ?dataD.assignee:"Not Found" }</p>
                 <p>${dataD.updatedAt}</p>
             </div>
             <div class="flex gap-4">
@@ -63,14 +63,18 @@ const shoDisplay=(dataD)=>{
 
    document.getElementById("my_modal").showModal()
 }
-// function activButton(btn){
-//     allButton.forEach(button => {
-//         button.classList.remove("btn-primary")
-//         button.classList.add("btn-outline")
-//     })
-//     btn.classList.add("btn-primary")
-//     btn.classList.remove("btn-outline")
-// }
+const buttonContainer = document.getElementById("all-button")
+const allButtons = buttonContainer.querySelectorAll("button")
+
+function activeButton(btn){
+    allButtons.forEach(button=>{
+        button.classList.remove("btn-primary")
+        button.classList.add("btn-outline")
+    })
+
+    btn.classList.add("btn-primary")
+    btn.classList.remove("btn-outline")
+}
 
 function showLoading() {
     loadingSpnnir.classList.remove("hidden")
@@ -126,7 +130,8 @@ function displayData(allData) {
     issuesLength.innerText = allData.length + " Issues"
 }
 
-function openData() {
+function openData(event) {
+    activeButton(event.target)
     showLoading()
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
@@ -137,7 +142,8 @@ function openData() {
         })
     // console.log(openData.length)
 }
-function closedData() {
+function closedData(event) {
+    activeButton(event.target)
     showLoading()
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
